@@ -7,12 +7,20 @@ const App = () => {
   const [item, setItem] = useState([]);
 
   const addItem = () => {
-    setItem([...item, inputData]);
-    setInputData('');
+    if(inputData !== ""){
+      setItem([...item, inputData]);
+      setInputData('');
+    }else{
+      alert('Please enter something in the input');
+    }
   }
 
   const deleteItem = (id) => {
     setItem((prev) => prev.filter((data, ind) => ind !== id))
+  }
+
+  const removeAll = () => {
+    setItem([]);
   }
 
   return (
@@ -41,7 +49,7 @@ const App = () => {
           </div>
 
           <div className='showItems'>
-            <button className='btn effect04' data-sm-link-text="Remove All"><span>Check List</span></button>
+            <button className='btn effect04' data-sm-link-text="Remove All" onClick={removeAll}><span>Check List</span></button>
           </div>
         </div>
       </div>
